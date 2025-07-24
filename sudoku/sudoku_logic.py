@@ -117,22 +117,10 @@ def play_game(grid):
     print("🎉 Congratulations! You completed the Sudoku puzzle.")
     print_board(grid)
 
-def choose_diff():
-    print("\n Type e for easy \n Type m for Medium \n Type h for hard")
-    diff = input("Choose difficulty (e/m/h): ").lower()
-    if diff == "e":
-        return 30
-    elif diff == "m":
-        return 40
-    elif diff == "h":
-        return 50
-    else:
-        print("Please enter either e, m or h")
-        return choose_diff()
 
-if __name__ == "__main__":
-    diff = choose_diff()
-    grid = [[0 for _ in range(9)] for _ in range(9)]
-    solve(grid)
-    remove_numbers(grid, num_to_remove=diff)
-    play_game(grid)
+def generate_puzzle(diff):
+    solution_grid = [[0 for _ in range(9)] for _ in range(9)]
+    solve(solution_grid)
+    puzzle_grid = [row.copy() for row in solution_grid]
+    remove_numbers(puzzle_grid, num_to_remove=diff)
+    return puzzle_grid, solution_grid
