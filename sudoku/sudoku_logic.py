@@ -57,7 +57,10 @@ def solve(grid):
 
     row, col = empty
 
-    for num in range(1,10):
+    nums = list(range(1,10))
+    random.shuffle(nums)
+
+    for num in nums:
         if is_valid(grid, row, col, num):
             grid[row][col] = num
 
@@ -114,8 +117,22 @@ def play_game(grid):
     print("🎉 Congratulations! You completed the Sudoku puzzle.")
     print_board(grid)
 
+def choose_diff():
+    print("\n Type e for easy \n Type m for Medium \n Type h for hard")
+    diff = input("Choose difficulty (e/m/h): ").lower()
+    if diff == "e":
+        return 30
+    elif diff == "m":
+        return 40
+    elif diff == "h":
+        return 50
+    else:
+        print("Please enter either e, m or h")
+        return choose_diff()
+
 if __name__ == "__main__":
+    diff = choose_diff()
     grid = [[0 for _ in range(9)] for _ in range(9)]
     solve(grid)
-    remove_numbers(grid, num_to_remove=40)
+    remove_numbers(grid, num_to_remove=diff)
     play_game(grid)
