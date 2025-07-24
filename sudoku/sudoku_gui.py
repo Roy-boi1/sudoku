@@ -11,12 +11,17 @@ def get_diff():
 
     selector = tk.Tk()
     selector.title("Select Difficulty")
+    selector.configure(bg="white")
 
-    tk.Label(selector, text="Choose Difficulty", font=("Arial", 14)).pack(pady=10)
+    label = tk.Label(selector, text="Choose Difficulty", font=("Helvetica", 14),bg='white', fg='black')
+    label.pack(pady=10)
 
-    tk.Button(selector, text="Easy", command=lambda: start_game(30)).pack(pady=5)
-    tk.Button(selector, text="Medium", command=lambda: start_game(40)).pack(pady=5)
-    tk.Button(selector, text="Hard", command=lambda: start_game(50)).pack(pady=5)
+    btn_easy = tk.Button(selector, text="Easy", command=lambda: start_game(30), bg='white', fg='black', activebackground='black', activeforeground='white')
+    btn_easy.pack(pady=5)
+    btn_medium = tk.Button(selector, text="Medium", command=lambda: start_game(40), bg='white', fg='black', activebackground='black', activeforeground='white')
+    btn_medium.pack(pady=5)
+    btn_hard = tk.Button(selector, text="Hard", command=lambda: start_game(50), bg='white', fg='black', activebackground='black', activeforeground='white')
+    btn_hard.pack(pady=5)
 
     selector.mainloop()
     return difficulty
@@ -24,12 +29,13 @@ def get_diff():
 def draw_grid(puzzle_grid, solution_grid):
     root = tk.Tk()
     root.title("Sudoku Game")
+    root.configure(bg="white")
     entries = []
 
     for row in range(9):
         row_entries = []
         for col in range(9):
-            entry = tk.Entry(root, width=2, font=('Arial', 18), justify = 'center')
+            entry = tk.Entry(root, width=2, font=('Helvetica', 18), justify = 'center', bg="white", fg="black", highlightthickness=1, highlightbackground="black")
             entry.grid(row = row, column= col, padx=2, pady=2)
 
             if puzzle_grid[row][col] != 0:
